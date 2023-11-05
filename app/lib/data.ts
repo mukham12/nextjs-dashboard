@@ -154,6 +154,12 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
+  const placeholder: InvoiceForm = {
+    id: '',
+    customer_id: '',
+    amount: 0,
+    status: 'pending',
+  };
   try {
     const data = await sql<InvoiceForm>`
       SELECT
@@ -175,6 +181,7 @@ export async function fetchInvoiceById(id: string) {
   } catch (error) {
     console.error('Database Error:', error);
   }
+  return placeholder;
 }
 
 export async function fetchCustomers() {
